@@ -1,0 +1,9 @@
+{
+	"trailingComma": "none",
+	"useTabs": true,
+	"singleQuote": true,
+	"endOfLine": "crlf",
+	"printWidth": 140,
+	"vueIndentScriptAndStyle": true,
+	"arrowParens": "avoid"
+}

@@ -1,0 +1,107 @@
+import axios from 'axios';
+import router from '@/router';
+import navigation from '@/utils/navigation.js';
+import { useAuthenticationStore } from '@/stores/authentication.js';
+
+axios.defaults.baseURL = navigation.getWebAppUrl();
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.put['Content-Type'] = 'application/json';
+axios.defaults.withCredentials = true;
+
+axios.defaults.transformRequest = [
+	function (data, headers) {
+		let hasDefaultContentType = headers['Content-Type'] == null;
+
+		if (hasDefaultContentType || headers['Content-Type'] === 'application/json') {
+			return JSON.stringify(data);
+		}
+
+		return data;
+	},
+	...axios.defaults.transformRequest
+];
+
+axios.interceptors.response.use(
+	function (response) {
+		let cookieAuthenthenticationTimeout = response?.headers?.['cookie-authentication-timeout'];
+		if (cookieAuthenthenticationTimeout) {
+			let sessionStateTimeout = parseInt(cookieAuthenthenticationTimeout, 10);
+			if (Number.isInteger(sessionStateTimeout)) {
+				const authenticationStore = useAuthenticationStore();
+				authenticationStore.scheduleCheckValidSession(sessionStateTimeout);
+			}
+		}
+
+<<<<<<< HEAD
+=======
+		const contentLengthHeader = response.headers['content-length'];
+		if (!response.data && contentLengthHeader) {
+			const contentLength = parseInt(contentLengthHeader, 10);
+			if (contentLength > 0) {
+				return Promise.reject(
+					new Error(
+						'The response was too large for the browser to load. Please narrow down your request or contact the application administrator.'
+					)
+				);
+			}
+		}
+
+		if (response.config?.responseType === 'arraybuffer' || response.config?.responseType === 'blob') {
+			return response.data;
+		}
+
+>>>>>>> 4b117d938 (S6-60: Incorrect error shown when too much data is returned)
+		return response?.data;
+	},
+	async function (error) {
+		if (error.response) {
+			if (error.response.status === 400) {
+				return error.response?.data;
+			}
+
+			if (error.response.status === 401) {
+				const authenticationStore = useAuthenticationStore();
+				authenticationStore.logout();
+				authenticationStore.refreshAuthenticationState();
+
+				router.go();
+				throw error;
+			}
+
+			if (error.response.status === 403) {
+				router.push({
+					name: 'Forbidden',
+					params: {
+						pageName: getPageName(error.response.config?.url),
+						errorMessage: error.response.data?.title
+					}
+				});
+				throw error;
+			}
+
+			if (error.response.status === 413) {
+				throw new Error(`The amount of data to be transferred exceeds the allowed limit. Please contact the application administrator.
+Possible solutions to this problem are:
+* Increase the limit using StadiumApplicationManager -> Application -> Configuration -> Maximum File Upload Size`);
+			}
+		}
+
+		throw error;
+	}
+);
+
+function getPageName(apiUrl) {
+	if (!apiUrl || !apiUrl.startsWith('api/pages/')) return null;
+
+	let startIndex = apiUrl.toLowerCase().indexOf('api/pages/') + 'api/pages/'.length;
+
+	if (startIndex >= 0) {
+		let endIndex = apiUrl.indexOf('/', startIndex);
+
+		return endIndex >= 0 ? apiUrl.substring(startIndex, endIndex) : apiUrl.substring(startIndex);
+	}
+
+	return null;
+}
+
+export default axios;

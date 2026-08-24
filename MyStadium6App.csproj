@@ -1,0 +1,215 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+	  <WarningsAsErrors>$(WarningsAsErrors);CA1416</WarningsAsErrors>
+	  <AssemblyName>Twenty57.Stadium.$(MSBuildProjectName)</AssemblyName>
+	  <AssemblyTitle>$(MSBuildProjectName)</AssemblyTitle>
+	  <Company>Twenty57</Company>
+	  <Authors>Twenty57</Authors>
+	  <Product>Twenty57.Stadium</Product>
+	  <Copyright>Copyright © 2025 Twenty57</Copyright>
+	  <RootNamespace>Twenty57.Stadium.$(MSBuildProjectName.Replace(" ", "_"))</RootNamespace>
+	  <Configurations>Debug;Release;ReleaseDesigner;ReleasePlugins;ReleaseServer;ReleaseDesignerTests;ReleaseServerTests</Configurations>
+	  <Nullable>disable</Nullable>
+	  <ImplicitUsings>disable</ImplicitUsings>
+	  <SpaRoot>ClientApp\</SpaRoot>
+	  <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
+	  <NuGetAuditMode>direct</NuGetAuditMode>
+  </PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<Optimize>False</Optimize>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<Optimize>True</Optimize>
+		<DefineConstants>RELEASE;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDesigner|AnyCPU'">
+		<Optimize>True</Optimize>
+		<DefineConstants>RELEASEDESIGNER;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleasePlugins|AnyCPU'">
+		<Optimize>True</Optimize>
+		<DefineConstants>RELEASEPLUGINS;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseServer|AnyCPU'">
+		<Optimize>True</Optimize>
+		<DefineConstants>RELEASESERVER;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseDesignerTests|AnyCPU'">
+		<Optimize>True</Optimize>
+		<DefineConstants>RELEASEDESIGNERTESTS;TRACE</DefineConstants>
+		<NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='ReleaseServerTests|AnyCPU'">
+	  <Optimize>True</Optimize>
+	  <DefineConstants>RELEASESERVERTESTS;TRACE</DefineConstants>
+	  <NoWarn>1701;1702;ASP0000</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <Folder Include="ClientApp\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="ClosedXML" Version="0.105.0" />
+	  <PackageReference Include="HtmlAgilityPack" Version="1.11.71" />
+	  <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
+	  <PackageReference Include="Lucene.Net" Version="4.8.0-beta00016" />
+	  <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00016" />
+	  <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="6.0.0" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.11" />
+	  <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="8.0.11" />
+	  <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.11" />
+	  <PackageReference Include="Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson" Version="8.0.11" />
+	  <PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="8.0.11" />
+	  <PackageReference Include="Microsoft.ClearScript" Version="7.4.5" />
+	  <PackageReference Include="Microsoft.ClearScript.V8.Native.linux-x64" Version="7.4.5" />
+	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+	  <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.11" />
+	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	  <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="23.6.1" />
+	  <PackageReference Include="Portable.BouncyCastle" Version="1.9.0" />
+	  <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+	  <PackageReference Include="Serilog.Sinks.EventLog" Version="3.1.0" />
+	  <PackageReference Include="System.Data.Odbc" Version="8.0.1" />
+	  <PackageReference Include="System.Text.Json" Version="8.0.5" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Twenty57.Stadium.Core">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.Core.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Twenty57.Stadium.Core.Database">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.Core.Database.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Twenty57.Stadium.Core.Web">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.Core.Web.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Twenty57.Stadium.Server.Shared">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.Server.Shared.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Twenty57.Stadium.WebApp.Spa.Administration">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.WebApp.Spa.Administration.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Twenty57.Stadium.WebApp.Spa.Core">
+	    <HintPath>ExternalReferences\Twenty57.Stadium.WebApp.Spa.Core.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="appsettings.json" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Update="global.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Update="web.config">
+		  <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+	<!-- Linux/container publish only: the app reads web.config at runtime (upload limit + custom headers), so
+	     it must reach the publish output, and the IIS/ANCM web.config transform (meaningless under Kestrel)
+	     must be disabled so it doesn't rewrite the file. -->
+	<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+		<IsTransformWebConfigDisabled>true</IsTransformWebConfigDisabled>
+	</PropertyGroup>
+
+	<ItemGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+		<Content Update="web.config">
+			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- Don't publish the SPA source files, but do show them in the project files list -->
+		<Content Remove="$(SpaRoot)**" />
+		<None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<!-- don't publish deploy-config.json -->
+		<Content Remove="deploy-config.json" />
+		<None Include="deploy-config.json" Condition="Exists('deploy-config.json')" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="ClientApp\dist\debug\" />
+		<Folder Include="ClientApp\dist\production\" />
+	</ItemGroup>
+
+	<Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
+		<!-- Ensure Node.js is installed -->
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build and run this project. To continue, please install Node.js from https://nodejs.org/, and then restart your command prompt or IDE." />
+		<Message Importance="high" Text="Restoring dependencies using 'npm'. This may take several minutes..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm ci" />
+	</Target>
+
+	<!-- Container publish only: restore the SPA's npm dependencies before the publish-time vite build. The
+	     export strips ClientApp\node_modules AND package-lock.json so the buildpack resolves a clean,
+	     Linux-correct tree. The SDK's DebugEnsureNodeEnv only restores for Debug, but the buildpack publishes
+		 Release, so without this the vite binary is absent and 'npm run build' fails with exit 127. 
+		 Gated on node_modules being absent, true ONLY for the stripped export. -->
+	<Target Name="EnsureSpaDependenciesForPublish" BeforeTargets="PublishRunVite" Condition=" !Exists('$(SpaRoot)node_modules') ">
+		<Exec Command="node --version" ContinueOnError="true">
+			<Output TaskParameter="ExitCode" PropertyName="ErrorCode" />
+		</Exec>
+		<Error Condition="'$(ErrorCode)' != '0'" Text="Node.js is required to build this project. Install Node.js from https://nodejs.org/ and rebuild." />
+		<Message Importance="high" Text="Restoring SPA dependencies using 'npm install'. This may take several minutes..." />
+		<!-- vite, @vitejs/plugin-vue and sass are devDependencies, and the buildpack sets NODE_ENV=production
+		     under which a plain 'npm install' skips them, leaving the vite binary absent ("vite: not found",
+		     exit 127). -->
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install --include=dev" />
+	</Target>
+
+	<Target Name="PublishRunVite" AfterTargets="ComputeFilesToPublish">
+		<!-- Build Target: Run webpack dist build -->
+		<Message Importance="high" Text="Running npm build..." />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build-debug" />
+
+		<!-- Include the newly-built files in the publish output -->
+		<ItemGroup>
+			<DistFiles Include="$(SpaRoot)dist\**" />
+			<ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+				<RelativePath>%(DistFiles.Identity)</RelativePath>
+				<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			</ResolvedFileToPublish>
+		</ItemGroup>
+	</Target>
+
+	<!-- Linux/container publish only: guarantee web.config lands in the final publish dir the buildpack
+	     captures (the app reads it at runtime). Runs after Publish so it wins regardless of SDK target
+	     ordering. -->
+	<Target Name="EnsureWebConfigInPublish" AfterTargets="Publish" Condition="$([MSBuild]::IsOSPlatform('Linux')) And Exists('web.config')">
+		<Copy SourceFiles="web.config" DestinationFiles="$(PublishDir)web.config" OverwriteReadOnlyFiles="true" />
+	</Target>
+
+	<!-- Linux/container publish only: guarantee administration.db lands in the publish dir the buildpack captures. 
+		 The app self-seeds it onto the volume on first boot (Program.RelocateWritableConfig), 
+		 reading from AppContext.BaseDirectory; without this it is absent there and the seed fails. -->
+	<Target Name="EnsureAdministrationDbInPublish" AfterTargets="Publish" Condition="$([MSBuild]::IsOSPlatform('Linux')) And Exists('administration.db')">
+		<Copy SourceFiles="administration.db" DestinationFiles="$(PublishDir)administration.db" OverwriteReadOnlyFiles="true" />
+	</Target>
+
+</Project>

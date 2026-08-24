@@ -1,0 +1,25 @@
+{
+  "authentication": {
+    "mode": "Cookie",
+    "oauth": {
+      "authority": null,
+      "clientId": null,
+      "apiResourceName": null,
+      "apiResourceSecret": null,
+      "audience": null,
+      "scopes": null,
+      "roleClaimName": null,
+      "redirectUrl": null,
+      "logoutRedirectUrl": null,
+      "tenant": null,
+      "oidcProvider": null
+    }
+  },
+  "admin": {
+    "email": null,
+    "password": null,
+    "uniqueId": null
+  },
+  "settings": [],
+  "connections": []
+}
